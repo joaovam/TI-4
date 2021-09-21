@@ -6,9 +6,11 @@ public class PlayerMoviment : MonoBehaviour{
     private Rigidbody rb;
     private Vector3 movement;
     public float speed = 6;
+    private Animator animator;
     
     private void Awake(){
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate(){
@@ -17,6 +19,7 @@ public class PlayerMoviment : MonoBehaviour{
 
         Move(h, v);
         Turning(h, v);
+        Animating(h, v);
     }
 
     void Move(float h, float v){
@@ -33,4 +36,9 @@ public class PlayerMoviment : MonoBehaviour{
         }
     }
     
+    void Animating(float h, float v){
+        bool walking = h != 0 || v != 0;
+        animator.SetBool("Walking", walking);
+    }
+
 }
