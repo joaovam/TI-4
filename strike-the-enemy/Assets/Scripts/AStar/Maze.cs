@@ -63,6 +63,11 @@ public class Maze : MonoBehaviour
                 if(z == depth -1 || x == width-1 || x==0 || z==0)
                     map[x, z] = 1;     //1 = wall  0 = corridor
             }
+        GameObject[] ambiente = GameObject.FindGameObjectsWithTag("ambiente");
+        foreach (GameObject X in ambiente)
+        {
+            map[(int)X.transform.position.x / scale, (int)X.transform.position.z / scale] = 1;
+        }
     }
 
     public virtual void Generate()
@@ -84,9 +89,9 @@ public class Maze : MonoBehaviour
                 if (map[x, z] == 1)
                 {
                     Vector3 pos = new Vector3(x * scale, 0, z * scale);
-                    GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    wall.transform.localScale = new Vector3(scale, scale, scale);
-                    wall.transform.position = pos;
+                    //GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    //wall.transform.localScale = new Vector3(scale, scale, scale);
+                    //wall.transform.position = pos;
                 }
             }
     }

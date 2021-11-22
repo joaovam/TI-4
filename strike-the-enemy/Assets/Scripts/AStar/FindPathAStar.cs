@@ -196,7 +196,7 @@ public class FindPathAStar : MonoBehaviour
     {
         seguidor = this.gameObject;
         destino = seguidor.transform.position;
-        InvokeRepeating("BeginSearch", 0.01f, 2f);
+        InvokeRepeating("BeginSearch", 0.01f, 1.5f);
         //BeginSearch();
     }
     
@@ -258,7 +258,7 @@ public class FindPathAStar : MonoBehaviour
 
             if(follows.Count() > 0 && !done){        
                 if(!comecar && Vector3.Distance(seguidor.transform.position,  end.transform.position) > 1)
-                    seguidor.transform.position = Vector3.Lerp(seguidor.transform.position, destino, 0.5f );
+                    seguidor.transform.position = Vector3.MoveTowards(seguidor.transform.position, destino, 0.05f );
                 Debug.Log(seguidor.transform.position + " x "+ destino);
                 /*Debug.Log(seguidor.transform.position.x + " x X "+ destino.x);
                 Debug.Log(seguidor.transform.position.y + " x Y "+ destino.y);
